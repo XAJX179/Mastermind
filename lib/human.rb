@@ -6,12 +6,11 @@ class Human < Player
     code = []
     get_code(code) until code.length == 4
     format(code, balls)
-    pp code
   end
 
   def get_code(code)
     puts "color number #{code.length + 1} : "
-    input = gets.chomp.match(/[rbycwgm]{1}/).to_s
+    input = gets.chomp.match(/[rbycwgm]{1}/).to_s # regex
     if input.empty? || code.include?(input)
       puts 'Invalid input. Try again.'
     else
@@ -19,10 +18,17 @@ class Human < Player
     end
   end
 
+  # converting y to :yellow ,r to :red ,etc
   def format(code, balls)
     code.map! do |color|
       color_index = balls.colors.index { |e| e[0] == color }
       balls.colors[color_index]
     end
+  end
+
+  def guess(board, balls)
+    code = []
+    get_code(code) until code.length == 4
+    format(code, balls)
   end
 end
