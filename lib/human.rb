@@ -2,7 +2,7 @@
 
 # a human player from Player class
 class Human < Player
-  def input_code(board, balls)
+  def input_code(balls)
     code = []
     get_code(code) until code.length == 4
     format(code, balls)
@@ -26,7 +26,7 @@ class Human < Player
     end
   end
 
-  def guess(board, balls)
+  def guess(balls)
     code = []
     get_code(code) until code.length == 4
     format(code, balls)

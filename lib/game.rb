@@ -4,8 +4,9 @@
 module Game
   TOTAL_TURNS = 12
   def self.start
-    human = Human.new('guesser')
-    computer = Computer.new('mastermind')
+    type = Player.select_type
+    human = Human.new(type[0])
+    computer = Computer.new(type[1])
     balls = Balls.new
     board = Board.new(balls)
     run_game(human, computer, board, balls)
@@ -29,9 +30,9 @@ module Game
 
   def self.choose_code(human, computer, board, balls)
     code = if computer.type == 'mastermind'
-             computer.input_code(board, balls)
+             computer.input_code(balls)
            else
-             human.input_code(board, balls)
+             human.input_code(balls)
            end
     board.secret_code.push(code).flatten!
     puts 'Secret Code Selected!'
@@ -53,7 +54,7 @@ module Game
     if computer.type == 'guesser'
       computer.guess(board, balls)
     else
-      human.guess(board, balls)
+      human.guess(balls)
     end
   end
 
@@ -70,7 +71,8 @@ module Game
   def self.check_guess(board, balls)
     if balls.board_colors.include?(board.secret_code)
       board.winner = 'guesser'
-    else
+    elsif board.turns_left.zero?
+      board.winner = 'mastermind'
     end
   end
 
@@ -78,7 +80,7 @@ module Game
     if board.winner == 'guesser'
       puts 'Guesser Wins!'
     else
-      puts 'Mastermind Wins!'
+      puts "Mastermind Wins! \nCode Revealed! : #{board.secret_code}"
     end
   end
 end

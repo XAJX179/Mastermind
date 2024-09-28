@@ -31,9 +31,9 @@ class Board
     array.each_with_object(Hash.new(0)) do |item, obj|
       index = array.index(item)
       if secret_code.include?(item) && secret_code[index] == item
-        obj[:right_pos] += 1
+        obj['right_position'] += 1
       elsif secret_code.include?(item)
-        obj[:wrong_pos] += 1
+        obj['wrong_position'] += 1
       end
     end
   end
