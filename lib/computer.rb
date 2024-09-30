@@ -21,8 +21,7 @@ class Computer < Player
              use_stored_stats(balls)
            end
     store_feedback(board, code) if Game.valid_guess?(code, balls)
-    pp count
-    pp code
+    code
   end
 
   def first_try?(board)
@@ -48,7 +47,6 @@ class Computer < Player
 
   def replace_colors(balls, count_num, num)
     index = count.index(count_num)
-    pp index
     arr = Array.new(balls.board_colors[index])
     cleaned_arr = arr.shuffle!
     cleaned_arr.pop(num)

@@ -36,7 +36,6 @@ module Game
            end
     board.secret_code.push(code).flatten!
     puts 'Secret Code Selected!'
-    pp board
   end
 
   def self.guess_code(human, computer, board, balls)
