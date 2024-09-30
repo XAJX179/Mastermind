@@ -13,8 +13,10 @@ class Player
     input = gets.chomp.match(/[gm]{1}/).to_s
     case input
     when 'g'
+      puts 'Computer is Mastermind!'.colorize(:green)
       %w[guesser mastermind]
     when 'm'
+      puts 'Computer is Guesser!'.colorize(:blue)
       %w[mastermind guesser]
     end
   end
